@@ -27,36 +27,25 @@ A robust, full-stack Task Management application featuring real-time synchroniza
     Visual Feedback: Status-based color badges and interactive hover states.
 
 🛠 Tech Stack
-Component	Technology
-Frontend	React (Vite), Axios, Socket.io-client, CSS3 (Custom)
-Backend	Node.js, Express.js, Socket.io
-Database	PostgreSQL
-Environment	Dotenv (Security-first approach)
-📁 Project Structure
-Plaintext
 
-Task-Management-App/
-├── backend/
-│   ├── controllers/    # Business logic for task operations
-│   ├── routes/         # REST API endpoint definitions
-│   ├── db.js           # PostgreSQL connection pool
-│   ├── server.js       # Entry point & WebSocket logic
-│   └── .env            # Environment variables (Ignored by Git)
-├── frontend/
-│   ├── src/
-│   │   ├── TaskPage.jsx # Main dashboard component
-│   │   ├── api.js       # Axios configuration
-│   │   ├── socket.js    # WebSocket client initialization
-│   │   └── styles.css   # Custom styling & animations
-└── README.md
+    Component	Technology
+    Frontend	React (Vite), Axios, Socket.io-client, CSS3 (Custom)
+    Backend	    Node.js, Express.js, Socket.io
+    Database	PostgreSQL
+    Environment	Dotenv (Security-first approach)
+    
+
+
 
 🔌 API & Socket Specifications
 REST Endpoints
-Method	Endpoint	Description
-GET	/api/tasks	Fetch all tasks (supports ?status= filter)
-POST	/api/tasks	Create a new task
-PATCH	/api/tasks/:id	Update title, description, or status
-DELETE	/api/tasks/:id	Remove a task
+
+    Method	Endpoint	    Description
+    GET	    /api/tasks	    Fetch all tasks (supports ?status= filter)
+    POST	/api/tasks	    Create a new task
+    PATCH	/api/tasks/:id	Update title, description, or status
+    DELETE	/api/tasks/:id	Remove a task
+
 WebSocket Events
 
     task_created: Emitted when a new task is added.
@@ -71,36 +60,44 @@ WebSocket Events
 Ensure you have PostgreSQL installed and create a database. Run the following schema:
 SQL
 
-CREATE TABLE tasks (
-  id SERIAL PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  description TEXT,
-  status VARCHAR(20) DEFAULT 'pending' CHECK (status IN ('pending', 'in-progress', 'completed')),
-  createdAt TIMESTAMP DEFAULT NOW(),
-  updatedAt TIMESTAMP DEFAULT NOW()
-);
+    CREATE TABLE tasks (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    status VARCHAR(20) DEFAULT 'pending' CHECK (status IN ('pending', 'in-progress', 'completed')),
+    createdAt TIMESTAMP DEFAULT NOW(),
+    updatedAt TIMESTAMP DEFAULT NOW()
+    );
 
 2. Backend Configuration
 
-    Navigate to /backend and run npm install.
+    Navigate to /backend and run
+
+         npm install.
 
     Create a .env file and add your credentials:
     Code snippet
 
-    PORT=4000
-    DB_USER=your_user
-    DB_PASSWORD=your_password
-    DB_HOST=localhost
-    DB_NAME=task_db
-    DB_PORT=5432
+        PORT=4000
+        DB_USER=your_user
+        DB_PASSWORD=your_password
+        DB_HOST=localhost
+        DB_NAME=task_db
+        DB_PORT=5432
 
-    Start the server: npm run dev
+    Start the server: 
+            
+        npm run dev
 
 3. Frontend Configuration
 
-    Navigate to /frontend and run npm install.
-
-    Start the development server: npm run dev (Runs on port 5173).
+    Navigate to /frontend and run
+        
+        npm install
+        
+    Start the development server: 
+    
+        npm run dev (Runs on port 5173).
 
 🧠 Key Learnings & Engineering Challenges
 
