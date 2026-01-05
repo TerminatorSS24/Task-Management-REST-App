@@ -259,3 +259,31 @@ h1 {
   cursor: pointer;
   font-size: 16px;
 }
+.filter-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filter-tabs button {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #0f172a;
+  color: #e5e7eb;
+  font-size: 13px;
+}
+
+.filter-tabs button.active {
+  background: #6366f1;
+  color: white;
+}
+
+.task-date {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+

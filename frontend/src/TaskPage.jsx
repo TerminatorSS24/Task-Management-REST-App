@@ -5,6 +5,8 @@ import "./styles.css";
 
 export default function TaskPage() {
   const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState("all");
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -23,7 +25,6 @@ export default function TaskPage() {
 
   const addTask = async () => {
     if (!title.trim()) return;
-
     await api.post("/tasks", { title, description });
     setTitle("");
     setDescription("");
@@ -101,11 +102,27 @@ export default function TaskPage() {
     };
   }, []);
 
+  const filteredTasks =
+    filter === "all"
+      ? tasks
+      : tasks.filter((task) => task.status === filter);
+
   return (
     <div className="app-container">
       <h1>📝 Task Manager (Real-Time)</h1>
 
-      {/* Add task */}
+      <div className="filter-tabs">
+        {["all", "pending", "in-progress", "completed"].map((status) => (
+          <button
+            key={status}
+            className={filter === status ? "active" : ""}
+            onClick={() => setFilter(status)}
+          >
+            {status.replace("-", " ")}
+          </button>
+        ))}
+      </div>
+
       <div className="task-input">
         <input
           placeholder="Task title"
@@ -120,9 +137,8 @@ export default function TaskPage() {
         <button onClick={addTask}>Add Task</button>
       </div>
 
-      {/* Task list */}
       <ul className="task-list">
-        {tasks.map((task) => (
+        {filteredTasks.map((task) => (
           <li
             key={task.id}
             className={`task-item ${
@@ -141,7 +157,6 @@ export default function TaskPage() {
                   value={editDescription}
                   onChange={(e) => setEditDescription(e.target.value)}
                 />
-
                 <div className="edit-actions">
                   <button onClick={() => saveEdit(task.id)}>Save</button>
                   <button className="cancel" onClick={cancelEdit}>
@@ -160,10 +175,19 @@ export default function TaskPage() {
                   </div>
 
                   {task.description && (
-                    <p className="task-description">
-                      {task.description}
-                    </p>
+                    <p className="task-description">{task.description}</p>
                   )}
+
+                  <p className="task-date">
+                    Created:{" "}
+                    {new Date(
+                      task.createdat || task.createdAt
+                    ).toLocaleDateString("en-GB", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </p>
                 </div>
 
                 <div className="task-actions">
@@ -198,7 +222,6 @@ export default function TaskPage() {
         ))}
       </ul>
 
-      {/* Snackbar */}
       {showSnackbar && (
         <div className="snackbar">
           Task deleted
