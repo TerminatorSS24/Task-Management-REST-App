@@ -1,24 +1,28 @@
-📝 Real-Time Task Management System
+****📝 Real-Time Task Management System****
 
-A robust, full-stack Task Management application featuring real-time synchronization, fluid animations, and a modern dark interface. Built with the PERN stack (PostgreSQL, Express, React, Node.js) and Socket.io.
-🚀 Key Features
-✅ Core Functionality
-
+A robust, full-stack Task Management application featuring real-time synchronization, fluid animations, and a modern dark interface. Built with the **PERN stack** (PostgreSQL, Express, React, Node.js) and Socket.io.
+    
+**✅ Core Functionality**
+    
     Full CRUD: Create, Read, Update, and Delete tasks seamlessly.
 
     Inline Editing: Edit titles and descriptions directly on the card without page refreshes.
 
     Status Management: Transition tasks between Pending, In-Progress, and Completed.
 
+    Status Bar Filtering: A dynamic status filter bar allows users to instantly view tasks by category.
+
     Safety Net: Delete tasks with smooth CSS animations and a "Undo" snackbar option.
 
-⚡ Real-Time Engine
+    Task Creation Date Tracking: Each task records its creation timestamp automatically.
+
+**⚡ Real-Time Engine**
 
     Instant Sync: Utilizing WebSockets (Socket.io), changes made by one user reflect instantly across all connected clients.
 
     Event-Driven: Optimized broadcasts for creation, updates, and deletions.
 
-🎨 Premium UI/UX
+**🎨 Premium UI/UX**
 
     Modern Dark Mode: A sleek, professional dark interface.
 
@@ -26,7 +30,7 @@ A robust, full-stack Task Management application featuring real-time synchroniza
 
     Visual Feedback: Status-based color badges and interactive hover states.
 
-🛠 Tech Stack
+**🛠 Tech Stack**
 
     Component	Technology
     Frontend	React (Vite), Axios, Socket.io-client, CSS3 (Custom)
@@ -37,8 +41,9 @@ A robust, full-stack Task Management application featuring real-time synchroniza
 
 
 
-🔌 API & Socket Specifications
-REST Endpoints
+***🔌 API & Socket Specifications***
+
+**REST Endpoints**
 
     Method	Endpoint	    Description
     GET	    /api/tasks	    Fetch all tasks (supports ?status= filter)
@@ -46,7 +51,7 @@ REST Endpoints
     PATCH	/api/tasks/:id	Update title, description, or status
     DELETE	/api/tasks/:id	Remove a task
 
-WebSocket Events
+**WebSocket Events**
 
     task_created: Emitted when a new task is added.
 
@@ -54,11 +59,11 @@ WebSocket Events
 
     task_deleted: Emitted when a task is removed.
 
-⚙️ Setup & Installation
-1. Database Setup
+***⚙️ Setup & Installation***
+
+**1. Database Setup**
 
 Ensure you have PostgreSQL installed and create a database. Run the following schema:
-SQL
 
     CREATE TABLE tasks (
     id SERIAL PRIMARY KEY,
@@ -69,14 +74,13 @@ SQL
     updatedAt TIMESTAMP DEFAULT NOW()
     );
 
-2. Backend Configuration
+**2. Backend Configuration**
 
-    Navigate to /backend and run
+Navigate to /backend and run
 
          npm install.
 
-    Create a .env file and add your credentials:
-    Code snippet
+Create a .env file and add your credentials:
 
         PORT=4000
         DB_USER=your_user
@@ -85,21 +89,21 @@ SQL
         DB_NAME=task_db
         DB_PORT=5432
 
-    Start the server: 
+Start the server: 
             
         npm run dev
 
-3. Frontend Configuration
+**3. Frontend Configuration**
 
-    Navigate to /frontend and run
+Navigate to /frontend and run
         
         npm install
         
-    Start the development server: 
+Start the development server: 
     
         npm run dev (Runs on port 5173).
 
-🧠 Key Learnings & Engineering Challenges
+***🧠 Key Learnings & Engineering Challenges***
 
     State Consistency: Implementing logic to ensure the local React state matches the PostgreSQL database and global Socket broadcasts simultaneously.
 
@@ -107,6 +111,6 @@ SQL
 
     Schema Design: Enforcing data integrity at the database level using PostgreSQL constraints and check clauses.
 
-🏁 Conclusion
+***🏁 Conclusion***
 
 This project serves as a comprehensive example of a modern, real-time web application. It highlights the integration of relational databases with persistent bi-directional communication channels.
